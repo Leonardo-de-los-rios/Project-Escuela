@@ -152,6 +152,39 @@ def listar_alumnos(request, template_name='escuela/alumnos.html'):
     dato = {'alumnos': alumnos}
     return render(request,template_name,dato)
 
+def modificar_tipo_usuario(request,pk,template_name='escuela/tipo_usuario_form.html'):
+    tipo_usuario = TipoUsuario.objects.get(nombre=pk)
+    form = TipoUsuarioForm(request.POST or None, instance=tipo_usuario)
+    if form.is_valid():
+        form.save(commit=True)
+        return redirect('tipo_usuarios')
+    else:
+        print(form.errors)
+    dato = {'form':form}
+    return render(request,template_name,dato)
+
+'''def modificar_usuario(request,pk,template_name='escuela/usuario_form.html'):
+    usuario = usuario.objects.get(num_cuit=pk)
+    form = UserForm(request.POST or None, instance=usuario)
+    if form.is_valid():
+        form.save(commit=True)
+        return redirect('usuarios')
+    else:
+        print(form.errors)
+    dato = {'form':form}
+    return render(request,template_name,dato)'''
+    
+def modificar_genero(request,pk,template_name='escuela/genero_form.html'):
+    genero = Genero.objects.get(nombre=pk)
+    form = GeneroForm(request.POST or None, instance=genero)
+    if form.is_valid():
+        form.save(commit=True)
+        return redirect('generos')
+    else:
+        print(form.errors)
+    dato = {'form':form}
+    return render(request,template_name,dato)
+
 def modificar_persona(request,pk,template_name='escuela/persona_form.html'):
     persona = Persona.objects.get(num_cuit=pk)
     form = PersonaForm(request.POST or None, instance=persona)
@@ -163,6 +196,66 @@ def modificar_persona(request,pk,template_name='escuela/persona_form.html'):
     dato = {'form':form}
     return render(request,template_name,dato)
 
+def modificar_turno(request,pk,template_name='escuela/turno_form.html'):
+    turno = Turno.objects.get(nombre=pk)
+    form = TurnoForm(request.POST or None, instance=turno)
+    if form.is_valid():
+        form.save(commit=True)
+        return redirect('turnos')
+    else:
+        print(form.errors)
+    dato = {'form':form}
+    return render(request,template_name,dato)
+
+def modificar_curso(request,pk,template_name='escuela/curso_form.html'):
+    curso = Curso.objects.get(id=pk)
+    form = CursoForm(request.POST or None, instance=curso)
+    if form.is_valid():
+        form.save(commit=True)
+        return redirect('cursos')
+    else:
+        print(form.errors)
+    dato = {'form':form}
+    return render(request,template_name,dato)
+
+def modificar_alumno(request,pk,template_name='escuela/alumno_form.html'):
+    alumno = Alumno.objects.get(num_reg=pk)
+    form = AlumnoForm(request.POST or None, instance=alumno)
+    if form.is_valid():
+        form.save(commit=True)
+        return redirect('alumnos')
+    else:
+        print(form.errors)
+    dato = {'form':form}
+    return render(request,template_name,dato)
+
+def eliminar_tipo_usuario(request,pk,template_name='escuela/tipo_usuario_confirmar_eliminacion.html'):
+    tipo_usuario=TipoUsuario.objects.get(nombre=pk)
+    if request.method=='POST':
+        tipo_usuario.delete()
+        return redirect('tipo_usuarios')
+    else:
+        dato={'form':tipo_usuario}
+        return render(request,template_name,dato)
+
+'''def eliminar_usuario(request,pk,template_name='escuela/usuario_confirmar_eliminacion.html'):
+    usuario=User.objects.get(num_cuit=pk)
+    if request.method=='POST':
+        usuario.delete()
+        return redirect('usuarios')
+    else:
+        dato={'form':usuario}
+        return render(request,template_name,dato)'''
+
+def eliminar_genero(request,pk,template_name='escuela/genero_confirmar_eliminacion.html'):
+    genero=Genero.objects.get(nombre=pk)
+    if request.method=='POST':
+        genero.delete()
+        return redirect('generos')
+    else:
+        dato={'form':genero}
+        return render(request,template_name,dato)
+
 def eliminar_persona(request,pk,template_name='escuela/persona_confirmar_eliminacion.html'):
     persona=Persona.objects.get(num_cuit=pk)
     if request.method=='POST':
@@ -170,4 +263,31 @@ def eliminar_persona(request,pk,template_name='escuela/persona_confirmar_elimina
         return redirect('personas')
     else:
         dato={'form':persona}
+        return render(request,template_name,dato)
+
+def eliminar_turno(request,pk,template_name='escuela/turno_confirmar_eliminacion.html'):
+    turno=Turno.objects.get(nombre=pk)
+    if request.method=='POST':
+        turno.delete()
+        return redirect('turnos')
+    else:
+        dato={'form':turno}
+        return render(request,template_name,dato)
+
+def eliminar_curso(request,pk,template_name='escuela/curso_confirmar_eliminacion.html'):
+    curso=Curso.objects.get(id=pk)
+    if request.method=='POST':
+        curso.delete()
+        return redirect('cursos')
+    else:
+        dato={'form':curso}
+        return render(request,template_name,dato)
+
+def eliminar_alumno(request,pk,template_name='escuela/alumno_confirmar_eliminacion.html'):
+    alumno=Alumno.objects.get(num_reg=pk)
+    if request.method=='POST':
+        alumno.delete()
+        return redirect('alumnos')
+    else:
+        dato={'form':alumno}
         return render(request,template_name,dato)

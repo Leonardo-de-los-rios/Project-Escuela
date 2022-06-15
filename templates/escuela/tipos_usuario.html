@@ -13,6 +13,8 @@
     {% for tipo_usuario in tipos_usuario %}
         <tr>
             <td>{{tipo_usuario.nombre}}</td>
+            <td><a href="{% url 'modificar_tipo_usuario' tipo_usuario.nombre %}"><img src="{% static 'img/Editar_25.png' %}"></a></td>
+            <td><a href="{% url 'eliminar_tipo_usuario' tipo_usuario.nombre %}"><img src="{% static 'img/Eliminar_25.png' %}"></a></td>
         </tr>
     {% endfor %}
     </table>

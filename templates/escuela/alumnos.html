@@ -23,6 +23,8 @@
             <td>{{alumno.persona.edad}}</td>
             <td>{{alumno.num_reg}}</td>
             <td>{{alumno.curso}}</td>
+            <td><a href="{% url 'modificar_alumno' alumno.num_reg %}"><img src="{% static 'img/Editar_25.png' %}"></a></td>
+            <td><a href="{% url 'eliminar_alumno' alumno.num_reg %}"><img src="{% static 'img/Eliminar_25.png' %}"></a></td>
         </tr>
     {% endfor %}
     </table>

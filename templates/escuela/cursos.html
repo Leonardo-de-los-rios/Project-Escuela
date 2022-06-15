@@ -19,6 +19,8 @@
             <td>{{curso.division}}</td>
             <td>{{curso.turno}}</td>
             <td>{{curso.cant_alumnos}}</td>
+            <td><a href="{% url 'modificar_curso' curso.id %}"><img src="{% static 'img/Editar_25.png' %}"></a></td>
+            <td><a href="{% url 'eliminar_curso' curso.id %}"><img src="{% static 'img/Eliminar_25.png' %}"></a></td>
         </tr>
     {% endfor %}
     </table>

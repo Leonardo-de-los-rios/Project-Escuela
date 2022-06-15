@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block titulo_pagina %}Listado de Tipos de Usuario{% endblock %}
+{% block titulo_pagina %}Listado de Turnos{% endblock %}
 {% block body %}
     <table class="table table-hover">
         <thead class="table-light">
@@ -13,6 +13,8 @@
     {% for turno in turnos %}
         <tr>
             <td>{{turno.nombre}}</td>
+            <td><a href="{% url 'modificar_turno' turno.nombre %}"><img src="{% static 'img/Editar_25.png' %}"></a></td>
+            <td><a href="{% url 'eliminar_turno' turno.nombre %}"><img src="{% static 'img/Eliminar_25.png' %}"></a></td>
         </tr>
     {% endfor %}
     </table>

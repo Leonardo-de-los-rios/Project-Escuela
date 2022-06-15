@@ -13,6 +13,8 @@
     {% for genero in generos %}
         <tr>
             <td>{{genero.nombre}}</td>
+            <td><a href="{% url 'modificar_genero' genero.nombre %}"><img src="{% static 'img/Editar_25.png' %}"></a></td>
+            <td><a href="{% url 'eliminar_genero' genero.nombre %}"><img src="{% static 'img/Eliminar_25.png' %}"></a></td>
         </tr>
     {% endfor %}
     </table>
