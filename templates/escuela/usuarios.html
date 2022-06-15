@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block titulo_pagina %}Listado de Tipos de Usuario{% endblock %}
+{% block body %}
+    <table class="table table-hover">
+        <thead class="table-light">
+            <tr>
+                <th>Nombre</th>
+                <th>Tipo de Usuario</th>
+                <th>MODIFICAR</th>
+                <th>ELIMINAR</th>
+            </tr>
+        </thead>
+    {% for usuario in usuarios %}
+        <tr>
+            <td>{{usuario.username}}</td>
+            <td>{{usuario.tipo}}</td>
+        </tr>
+    {% endfor %}
+    </table>
+{% endblock %}

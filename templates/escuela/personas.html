@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block titulo_pagina %}Listado de Personas{% endblock %}
+{% block body %}
+    <table class="table table-hover">
+        <thead class="table-light">
+            <tr>
+                <th>Apellido</th>
+                <th>Nombre</th>
+                <th>DNI</th>
+                <th>N° de CUIT/CUIL</th>
+                <th>Edad</th>
+                <th>Dirección</th>
+                <th>Teléfono</th>
+                <th>E-mail</th>
+                <th>Género</th>
+                <th>Usuario</th>
+                <th>MODIFICAR</th>
+                <th>ELIMINAR</th>
+            </tr>
+        </thead>
+    {% for persona in personas %}
+        <tr>
+            <td>{{persona.apellido}}</td>
+            <td>{{persona.nombre}}</td>
+            <td>{{persona.num_doc}}</td>
+            <td>{{persona.num_cuit}}</td>
+            <td>{{persona.edad}}</td>
+            <td>{{persona.direccion}}</td>
+            <td>{{persona.telefono}}</td>
+            <td>{{persona.email}}</td>
+            <td>{{persona.genero.nombre}}</td>
+            <td>{{persona.usuario.username}}</td>
+            <td><a href="{% url 'modificar_persona' persona.num_cuit %}"><img src="{% static 'img/Editar_25.png' %}"></a></td>
+            <td><a href="{% url 'eliminar_persona' persona.num_cuit %}"><img src="{% static 'img/Eliminar_25.png' %}"></a></td>
+        </tr>
+    {% endfor %}
+    </table>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block titulo_pagina %}Listado de Tipos de Usuario{% endblock %}
+{% block body %}
+    <table class="table table-hover">
+        <thead class="table-light">
+            <tr>
+                <th>Nombre</th>
+                <th>MODIFICAR</th>
+                <th>ELIMINAR</th>
+            </tr>
+        </thead>
+    {% for turno in turnos %}
+        <tr>
+            <td>{{turno.nombre}}</td>
+        </tr>
+    {% endfor %}
+    </table>
+{% endblock %}

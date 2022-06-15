@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block titulo_pagina %}Administración de Alumnos{% endblock %}
+{% block body %}
+    <form class="form" method="post" enctype="multipart/form-data" novalidate=''>
+        {% csrf_token %}
+        {{ form.num_reg.label }} {{ form.num_reg }}
+        {{ form.persona.label }} {{ form.persona }}
+        {{ form.curso.label }} {{ form.curso }}
+        <br>
+        <button type="submit" id="submit">Enviar</button>
+    </form>
+{% endblock %}

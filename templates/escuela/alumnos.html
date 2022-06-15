@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block titulo_pagina %}Listado de Alumnos{% endblock %}
+{% block body %}
+    <table class="table table-hover">
+        <thead class="table-light">
+            <tr>
+                <th>Apellido</th>
+                <th>Nombre</th>
+                <th>DNI</th>
+                <th>Edad</th>
+                <th>N° de Registro</th>
+                <th>Curso</th>
+                <th>MODIFICAR</th>
+                <th>ELIMINAR</th>
+            </tr>
+        </thead>
+    {% for alumno in alumnos %}
+        <tr>
+            <td>{{alumno.persona.apellido}}</td>
+            <td>{{alumno.persona.nombre}}</td>
+            <td>{{alumno.persona.num_doc}}</td>
+            <td>{{alumno.persona.edad}}</td>
+            <td>{{alumno.num_reg}}</td>
+            <td>{{alumno.curso}}</td>
+        </tr>
+    {% endfor %}
+    </table>
+{% endblock %}

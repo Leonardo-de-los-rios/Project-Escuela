@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block titulo_pagina %}Administración de Géneros{% endblock %}
+{% block body %}
+    <form  method="post" enctype="multipart/form-data" novalidate=''>
+        {% csrf_token %}
+        {% if form.errors %}
+            <!-- Mensaje de error -->
+            <div class="alert alert-danger d-flex align-items-center" role="alert">
+                <p>Hay errores en los datos ingresados. Por favor, corriga lo siguiente:</p>
+                {{ form.non_field_errors }}
+                <ul>
+                    {% for field in form %} <!-- field: campo del formulario-->
+                        {% if field.errors %}<li>{{ field.label }}: {{ field.errors|striptags }}</li>{% endif %}
+                    {% endfor %}
+                </ul>
+                <hr><br>
+            </div>
+        {% endif %}
+        <!-- Los atributos deben coincidir con los campos que colocamos en el archivo forms.py -->
+        <div class='col-sm-4 maincontent'>
+            <div class='row'>
+                <div class='col-xs-2'>
+                    {{ form.nombre.label }} {{ form.nombre }}
+                </div>
+            </div><br>
+            <input type="submit" name='submit' value='Enviar' class='btn btn-outline-success'>
+        </div>
+    </form>
+{% endblock %}

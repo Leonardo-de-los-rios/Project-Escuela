@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block titulo_pagina %}Administración de Tipos de Usuarios{% endblock %}
+{% block body %}
+	<form class="form" method="post" enctype="multipart/form-data" novalidate=''>
+		{% csrf_token %}
+		{{ form.nombre.label }} {{ form.nombre }}
+		<br>
+		<button type="submit" id="submit">Enviar</button>
+	</form>
+{% endblock %}

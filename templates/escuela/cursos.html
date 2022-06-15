@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block titulo_pagina %}Listado de Cursos{% endblock %}
+{% block body %}
+    <table class="table table-hover">
+        <thead class="table-light">
+            <tr>
+                <th>Año</th>
+                <th>División</th>
+                <th>Turno</th>
+                <th>Cantidad de Alumnos</th>
+                <th>MODIFICAR</th>
+                <th>ELIMINAR</th>
+            </tr>
+        </thead>
+    {% for curso in cursos %}
+        <tr>
+            <td>{{curso.año}}</td>
+            <td>{{curso.division}}</td>
+            <td>{{curso.turno}}</td>
+            <td>{{curso.cant_alumnos}}</td>
+        </tr>
+    {% endfor %}
+    </table>
+{% endblock %}

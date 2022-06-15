@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block titulo_pagina %}Administración de Personas{% endblock %}
+{% block body %}
+	<form class="form" method="post" enctype="multipart/form-data" novalidate=''>
+		{% csrf_token %}
+		{{ form.nombre.label }} {{ form.nombre }}
+		{{ form.apellido.label }} {{ form.apellido }}
+		{{ form.num_doc.label }} {{ form.num_doc }}
+		{{ form.num_cuit.label }} {{ form.num_cuit }}
+		{{ form.fecha_nac.label }} {{ form.fecha_nac }}
+		{{ form.telefono.label }} {{ form.telefono }}
+		{{ form.email.label }} {{ form.email }}
+		{{ form.direccion.label }} {{ form.direccion }}
+		{{ form.genero.label }} {{ form.genero }}
+		{{ form.usuario.label }} {{ form.usuario }}
+		<br>
+		<button type="submit" id="submit">Enviar</button>
+	</form>
+{% endblock %}
+
