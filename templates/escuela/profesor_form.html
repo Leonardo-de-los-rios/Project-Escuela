@@ -1,16 +1,16 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block titulo_pagina %}Administración de Alumnos{% endblock %}
+{% block titulo_pagina %}Administración de Profesores{% endblock %}
 {% block body %}
     <form class="form" method="post" enctype="multipart/form-data" novalidate=''>
         {% csrf_token %}
-        {{ form.num_reg.label }} {{ form.num_reg }}
         {{ form.nombre.label }} {{ form.nombre }}
         {{ form.apellido.label }} {{ form.apellido }}
         {{ form.num_doc.label }} {{ form.num_doc }}
+        {{ form.num_cuil.label }} {{ form.num_cuil }}
         {{ form.fecha_nac.label }} {{ form.fecha_nac }}
         {{ form.telefono.label }} {{ form.telefono }}
-        {{ form.aula.label }} {{ form.aula }}
+        {{ form.direccion.label }} {{ form.direccion }}
         <br>
         <button type="submit" id="submit">Enviar</button>
     </form>

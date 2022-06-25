@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block titulo_pagina %}Administración de Cursos{% endblock %}
+{% block titulo_pagina %}Administración de Aulas{% endblock %}
 {% block body %}
     <form class="form" method="post" enctype="multipart/form-data" novalidate=''>
         {% csrf_token %}
-        {{ form.materia_codigo.label }} {{ form.materia_codigo }}
-        {{ form.aula_idAula.label }} {{ form.aula_idAula }}
-        {{ form.dia_clase.label }} {{ form.dia_clase }}
+        {{ form.año.label }} {{ form.año }}
+        {{ form.division.label }} {{ form.division }}
+        {{ form.preceptor.label }} {{ form.preceptor }}
         <br>
         <button type="submit" id="submit">Enviar</button>
     </form>

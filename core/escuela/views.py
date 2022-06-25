@@ -5,8 +5,8 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render,redirect
 from django.views.generic import FormView, RedirectView
 import prj_escuela.settings as setting
-from .forms import PersonaForm,GeneroForm,TurnoForm,CursoForm,AlumnoForm,TipoUsuarioForm,UserRegisterForm
-from .models import Genero,Persona,Turno,Curso,Alumno
+from .forms import UserRegisterForm,PreceptorForm,AulaForm,AlumnoForm,MateriaForm,CursoForm,TurnoForm,TieneForm,RindeForm,ProfesorForm,DictaForm
+from .models import Preceptor,Aula,Alumno,Materia,Curso,Turno,Tiene,Rinde,Profesor,Dicta
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from core.user.models import TipoUsuario,User
@@ -34,7 +34,7 @@ def register(request,username=None,template_name='escuela/register.html'):
 	context = { 'form' : form }
 	return render(request, template_name, context)
 
-@login_required
+'''@login_required
 def nuevo_tipo_usuario(request,template_name='escuela/tipo_usuario_form.html'):
     if request.method=='POST':
         form = TipoUsuarioForm(request.POST)
@@ -46,9 +46,9 @@ def nuevo_tipo_usuario(request,template_name='escuela/tipo_usuario_form.html'):
     else:
         form = TipoUsuarioForm()
     dato={'form':form}
-    return render(request,template_name,dato)
+    return render(request,template_name,dato)'''
 
-def nuevo_genero(request,template_name='escuela/genero_form.html'):
+'''def nuevo_genero(request,template_name='escuela/genero_form.html'):
     if request.method=='POST':
         form = GeneroForm(request.POST)
         if form.is_valid():
@@ -72,31 +72,31 @@ def nueva_persona(request,template_name='escuela/persona_form.html'):
     else:
         form = PersonaForm()
     dato={'form':form}
-    return render(request,template_name,dato)
+    return render(request,template_name,dato)'''
 
-def nuevo_turno(request,template_name='escuela/turno_form.html'):
+def nuevo_preceptor(request,template_name='escuela/preceptor_form.html'):
     if request.method=='POST':
-        form = TurnoForm(request.POST)
+        form = PreceptorForm(request.POST)
         if form.is_valid():
             form.save(commit=True)
             return redirect('index') # invoca al nombre del name='...' en urls.py
         else:
             print(form.errors)
     else:
-        form = TurnoForm()
+        form = PreceptorForm()
     dato={'form':form}
     return render(request,template_name,dato)
 
-def nuevo_curso(request,template_name='escuela/curso_form.html'):
+def nueva_aula(request,template_name='escuela/aula_form.html'):
     if request.method=='POST':
-        form = CursoForm(request.POST)
+        form = AulaForm(request.POST)
         if form.is_valid():
             form.save(commit=True)
             return redirect('index') # invoca al nombre del name='...' en urls.py
         else:
             print(form.errors)
     else:
-        form = CursoForm()
+        form = AulaForm()
     dato={'form':form}
     return render(request,template_name,dato)
 
@@ -113,6 +113,97 @@ def nuevo_alumno(request,template_name='escuela/alumno_form.html'):
     dato={'form':form}
     return render(request,template_name,dato)
 
+def nueva_materia(request,template_name='escuela/materia_form.html'):
+    if request.method=='POST':
+        form = MateriaForm(request.POST)
+        if form.is_valid():
+            form.save(commit=True)
+            return redirect('index') # invoca al nombre del name='...' en urls.py
+        else:
+            print(form.errors)
+    else:
+        form = MateriaForm()
+    dato={'form':form}
+    return render(request,template_name,dato)
+
+def nuevo_curso(request,template_name='escuela/curso_form.html'):
+    if request.method=='POST':
+        form = CursoForm(request.POST)
+        if form.is_valid():
+            form.save(commit=True)
+            return redirect('index') # invoca al nombre del name='...' en urls.py
+        else:
+            print(form.errors)
+    else:
+        form = CursoForm()
+    dato={'form':form}
+    return render(request,template_name,dato)
+
+def nuevo_turno(request,template_name='escuela/turno_form.html'):
+    if request.method=='POST':
+        form = TurnoForm(request.POST)
+        if form.is_valid():
+            form.save(commit=True)
+            return redirect('index') # invoca al nombre del name='...' en urls.py
+        else:
+            print(form.errors)
+    else:
+        form = TurnoForm()
+    dato={'form':form}
+    return render(request,template_name,dato)
+
+def nuevo_tiene(request,template_name='escuela/tiene_form.html'):
+    if request.method=='POST':
+        form = TieneForm(request.POST)
+        if form.is_valid():
+            form.save(commit=True)
+            return redirect('index') # invoca al nombre del name='...' en urls.py
+        else:
+            print(form.errors)
+    else:
+        form = TieneForm()
+    dato={'form':form}
+    return render(request,template_name,dato)
+
+def nuevo_rinde(request,template_name='escuela/rinde_form.html'):
+    if request.method=='POST':
+        form = RindeForm(request.POST)
+        if form.is_valid():
+            form.save(commit=True)
+            return redirect('index') # invoca al nombre del name='...' en urls.py
+        else:
+            print(form.errors)
+    else:
+        form = RindeForm()
+    dato={'form':form}
+    return render(request,template_name,dato)
+
+def nuevo_profesor(request,template_name='escuela/profesor_form.html'):
+    if request.method=='POST':
+        form = ProfesorForm(request.POST)
+        if form.is_valid():
+            form.save(commit=True)
+            return redirect('index') # invoca al nombre del name='...' en urls.py
+        else:
+            print(form.errors)
+    else:
+        form = ProfesorForm()
+    dato={'form':form}
+    return render(request,template_name,dato)
+
+def nuevo_dicta(request,template_name='escuela/dicta_form.html'):
+    if request.method=='POST':
+        form = DictaForm(request.POST)
+        if form.is_valid():
+            form.save(commit=True)
+            return redirect('index') # invoca al nombre del name='...' en urls.py
+        else:
+            print(form.errors)
+    else:
+        form = DictaForm()
+    dato={'form':form}
+    return render(request,template_name,dato)
+
 def listar_tipos_usuario(request, template_name='escuela/tipos_usuario.html'):
     tipos_usuario = TipoUsuario.objects.all()
     dato = {'tipos_usuario': tipos_usuario}
@@ -123,7 +214,7 @@ def listar_usuarios(request, template_name='escuela/usuarios.html'):
     dato = {'usuarios': usuarios}
     return render(request,template_name,dato)
 
-def listar_generos(request, template_name='escuela/generos.html'):
+'''def listar_generos(request, template_name='escuela/generos.html'):
     generos = Genero.objects.all()
     dato = {'generos': generos}
     return render(request,template_name,dato)
@@ -133,7 +224,7 @@ def listar_personas(request, template_name='escuela/personas.html'):
     for persona in personas:
         persona.edad = relativedelta(datetime.now(), persona.fecha_nac).years
     dato = {'personas': personas}
-    return render(request,template_name,dato)
+    return render(request,template_name,dato)'''
 
 def listar_turnos(request, template_name='escuela/turnos.html'):
     turnos = Turno.objects.all()
@@ -152,7 +243,7 @@ def listar_alumnos(request, template_name='escuela/alumnos.html'):
     dato = {'alumnos': alumnos}
     return render(request,template_name,dato)
 
-def modificar_tipo_usuario(request,pk,template_name='escuela/tipo_usuario_form.html'):
+'''def modificar_tipo_usuario(request,pk,template_name='escuela/tipo_usuario_form.html'):
     tipo_usuario = TipoUsuario.objects.get(nombre=pk)
     form = TipoUsuarioForm(request.POST or None, instance=tipo_usuario)
     if form.is_valid():
@@ -161,7 +252,7 @@ def modificar_tipo_usuario(request,pk,template_name='escuela/tipo_usuario_form.h
     else:
         print(form.errors)
     dato = {'form':form}
-    return render(request,template_name,dato)
+    return render(request,template_name,dato)'''
 
 '''def modificar_usuario(request,pk,template_name='escuela/usuario_form.html'):
     usuario = usuario.objects.get(num_cuit=pk)
@@ -174,7 +265,7 @@ def modificar_tipo_usuario(request,pk,template_name='escuela/tipo_usuario_form.h
     dato = {'form':form}
     return render(request,template_name,dato)'''
     
-def modificar_genero(request,pk,template_name='escuela/genero_form.html'):
+'''def modificar_genero(request,pk,template_name='escuela/genero_form.html'):
     genero = Genero.objects.get(nombre=pk)
     form = GeneroForm(request.POST or None, instance=genero)
     if form.is_valid():
@@ -194,7 +285,7 @@ def modificar_persona(request,pk,template_name='escuela/persona_form.html'):
     else:
         print(form.errors)
     dato = {'form':form}
-    return render(request,template_name,dato)
+    return render(request,template_name,dato)'''
 
 def modificar_turno(request,pk,template_name='escuela/turno_form.html'):
     turno = Turno.objects.get(nombre=pk)
@@ -247,7 +338,7 @@ def eliminar_tipo_usuario(request,pk,template_name='escuela/tipo_usuario_confirm
         dato={'form':usuario}
         return render(request,template_name,dato)'''
 
-def eliminar_genero(request,pk,template_name='escuela/genero_confirmar_eliminacion.html'):
+'''def eliminar_genero(request,pk,template_name='escuela/genero_confirmar_eliminacion.html'):
     genero=Genero.objects.get(nombre=pk)
     if request.method=='POST':
         genero.delete()
@@ -263,7 +354,7 @@ def eliminar_persona(request,pk,template_name='escuela/persona_confirmar_elimina
         return redirect('personas')
     else:
         dato={'form':persona}
-        return render(request,template_name,dato)
+        return render(request,template_name,dato)'''
 
 def eliminar_turno(request,pk,template_name='escuela/turno_confirmar_eliminacion.html'):
     turno=Turno.objects.get(nombre=pk)

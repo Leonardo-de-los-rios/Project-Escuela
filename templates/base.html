@@ -44,21 +44,20 @@
         <nav class="second-nav">
           <a class="feed" href="{% url 'index' %}">Inicio</a>
           {% if request.user.is_authenticated %}
-            {% if request.user.get_tipo == 'Administrador' %}
-              <a class="feed" href="{% url 'nuevo_tipo_usuario' %}">Nuevo Tipo de Usuario</a>
-              <a class="feed" href="{% url 'nuevo_genero' %}">Nuevo Género</a>
-              <a class="feed" href="{% url 'nueva_persona' %}">Nueva Persona</a>
-              <a class="feed" href="{% url 'nuevo_turno' %}">Nuevo Turno</a>
-              <a class="feed" href="{% url 'nuevo_curso' %}">Nuevo Curso</a>
+              <a class="feed" href="{% url 'nuevo_preceptor' %}">Nuevo Preceptor</a>
+              <a class="feed" href="{% url 'nueva_aula' %}">Nueva Aula</a>
               <a class="feed" href="{% url 'nuevo_alumno' %}">Nuevo Alumno</a>
+              <a class="feed" href="{% url 'nuevo_curso' %}">Nuevo Curso</a>
+              <a class="feed" href="{% url 'nuevo_turno' %}">Nuevo Turno</a>
+              <a class="feed" href="{% url 'nuevo_tiene' %}">Tiene</a>
+              <a class="feed" href="{% url 'nuevo_rinde' %}">Rinde</a>
+              <a class="feed" href="{% url 'nuevo_profesor' %}">Nuevo Profesor</a>
+              <a class="feed" href="{% url 'nuevo_dicta' %}">Dicta</a>
               <a class="feed" href="{% url 'tipos_usuario' %}">Tipos de Usuario</a>
               <a class="feed" href="{% url 'usuarios' %}">Usuarios</a>
-              <a class="feed" href="{% url 'generos' %}">Géneros</a>
-              <a class="feed" href="{% url 'personas' %}">Personas</a>
               <a class="feed" href="{% url 'turnos' %}">Turnos</a>
               <a class="feed" href="{% url 'cursos' %}">Cursos</a>
               <a class="feed" href="{% url 'alumnos' %}">Alumnos</a>
-            {% endif %}
           {% endif %}
         </nav>       
 
