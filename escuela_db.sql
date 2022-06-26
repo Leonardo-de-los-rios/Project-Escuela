@@ -3,13 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-06-2022 a las 08:04:42
+-- Tiempo de generación: 26-06-2022 a las 08:28:13
 -- Versión del servidor: 10.4.19-MariaDB
 -- Versión de PHP: 8.0.7
-
-drop database if exists escuela_db2;
-create database escuela_db2;
-use escuela_db2;
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,30 +24,13 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `alumnos`
---
-
-CREATE TABLE `alumnos` (
-  `DNI` int(15) NOT NULL,
-  `Sexo` int(10) DEFAULT NULL,
-  `FechaNacimiento` date NOT NULL,
-  `Apellido` varchar(45) NOT NULL,
-  `Nombre` varchar(45) NOT NULL,
-  `Domicilio` varchar(90) NOT NULL,
-  `Telefono` varchar(20) DEFAULT NULL,
-  `Mail` varchar(90) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `auth_group`
 --
 
 CREATE TABLE `auth_group` (
   `id` int(11) NOT NULL,
-  `name` varchar(150) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `name` varchar(150) COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -63,7 +42,7 @@ CREATE TABLE `auth_group_permissions` (
   `id` int(11) NOT NULL,
   `group_id` int(11) NOT NULL,
   `permission_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -73,10 +52,10 @@ CREATE TABLE `auth_group_permissions` (
 
 CREATE TABLE `auth_permission` (
   `id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL,
+  `name` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
   `content_type_id` int(11) NOT NULL,
-  `codename` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `codename` varchar(100) COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `auth_permission`
@@ -161,22 +140,13 @@ INSERT INTO `auth_permission` (`id`, `name`, `content_type_id`, `codename`) VALU
 CREATE TABLE `django_admin_log` (
   `id` int(11) NOT NULL,
   `action_time` datetime(6) NOT NULL,
-  `object_id` longtext DEFAULT NULL,
-  `object_repr` varchar(200) NOT NULL,
+  `object_id` longtext COLLATE utf8_spanish_ci DEFAULT NULL,
+  `object_repr` varchar(200) COLLATE utf8_spanish_ci NOT NULL,
   `action_flag` smallint(5) UNSIGNED NOT NULL CHECK (`action_flag` >= 0),
-  `change_message` longtext NOT NULL,
+  `change_message` longtext COLLATE utf8_spanish_ci NOT NULL,
   `content_type_id` int(11) DEFAULT NULL,
   `user_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `django_admin_log`
---
-
-INSERT INTO `django_admin_log` (`id`, `action_time`, `object_id`, `object_repr`, `action_flag`, `change_message`, `content_type_id`, `user_id`) VALUES
-(1, '2022-06-26 05:15:58.709962', 'Alumno', 'Alumno', 1, '[{\"added\": {}}]', 16, 1),
-(2, '2022-06-26 05:16:15.561703', 'Administrador', 'Administrador', 1, '[{\"added\": {}}]', 16, 1),
-(3, '2022-06-26 05:16:22.338814', '1', 'admin', 2, '[{\"changed\": {\"fields\": [\"Tipo\"]}}]', 17, 1);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -186,9 +156,9 @@ INSERT INTO `django_admin_log` (`id`, `action_time`, `object_id`, `object_repr`,
 
 CREATE TABLE `django_content_type` (
   `id` int(11) NOT NULL,
-  `app_label` varchar(100) NOT NULL,
-  `model` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `app_label` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
+  `model` varchar(100) COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `django_content_type`
@@ -221,38 +191,38 @@ INSERT INTO `django_content_type` (`id`, `app_label`, `model`) VALUES
 
 CREATE TABLE `django_migrations` (
   `id` int(11) NOT NULL,
-  `app` varchar(255) NOT NULL,
-  `name` varchar(255) NOT NULL,
+  `app` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
   `applied` datetime(6) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `django_migrations`
 --
 
 INSERT INTO `django_migrations` (`id`, `app`, `name`, `applied`) VALUES
-(1, 'contenttypes', '0001_initial', '2022-06-26 04:50:26.856867'),
-(2, 'contenttypes', '0002_remove_content_type_name', '2022-06-26 04:50:27.360432'),
-(3, 'auth', '0001_initial', '2022-06-26 04:50:30.989477'),
-(4, 'auth', '0002_alter_permission_name_max_length', '2022-06-26 04:50:31.984474'),
-(5, 'auth', '0003_alter_user_email_max_length', '2022-06-26 04:50:32.017491'),
-(6, 'auth', '0004_alter_user_username_opts', '2022-06-26 04:50:32.047285'),
-(7, 'auth', '0005_alter_user_last_login_null', '2022-06-26 04:50:32.075802'),
-(8, 'auth', '0006_require_contenttypes_0002', '2022-06-26 04:50:32.102360'),
-(9, 'auth', '0007_alter_validators_add_error_messages', '2022-06-26 04:50:32.151653'),
-(10, 'auth', '0008_alter_user_username_max_length', '2022-06-26 04:50:32.197547'),
-(11, 'auth', '0009_alter_user_last_name_max_length', '2022-06-26 04:50:32.226222'),
-(12, 'auth', '0010_alter_group_name_max_length', '2022-06-26 04:50:32.336069'),
-(13, 'auth', '0011_update_proxy_permissions', '2022-06-26 04:50:32.370902'),
-(14, 'auth', '0012_alter_user_first_name_max_length', '2022-06-26 04:50:32.412496'),
-(15, 'user', '0001_initial', '2022-06-26 04:50:38.002958'),
-(16, 'admin', '0001_initial', '2022-06-26 04:50:39.511894'),
-(17, 'admin', '0002_logentry_remove_auto_add', '2022-06-26 04:50:39.544455'),
-(18, 'admin', '0003_logentry_add_action_flag_choices', '2022-06-26 04:50:39.608873'),
-(19, 'escuela', '0001_initial', '2022-06-26 04:50:50.783929'),
-(20, 'sessions', '0001_initial', '2022-06-26 04:50:51.198439'),
-(21, 'escuela', '0002_initial', '2022-06-26 05:13:02.756522'),
-(22, 'escuela', '0003_alter_alumno_usuario', '2022-06-26 05:13:43.137406');
+(1, 'contenttypes', '0001_initial', '2022-06-26 06:27:34.407235'),
+(2, 'contenttypes', '0002_remove_content_type_name', '2022-06-26 06:27:35.090816'),
+(3, 'auth', '0001_initial', '2022-06-26 06:27:38.210315'),
+(4, 'auth', '0002_alter_permission_name_max_length', '2022-06-26 06:27:39.285681'),
+(5, 'auth', '0003_alter_user_email_max_length', '2022-06-26 06:27:39.346927'),
+(6, 'auth', '0004_alter_user_username_opts', '2022-06-26 06:27:39.369963'),
+(7, 'auth', '0005_alter_user_last_login_null', '2022-06-26 06:27:39.396002'),
+(8, 'auth', '0006_require_contenttypes_0002', '2022-06-26 06:27:39.417330'),
+(9, 'auth', '0007_alter_validators_add_error_messages', '2022-06-26 06:27:39.446565'),
+(10, 'auth', '0008_alter_user_username_max_length', '2022-06-26 06:27:39.469850'),
+(11, 'auth', '0009_alter_user_last_name_max_length', '2022-06-26 06:27:39.521175'),
+(12, 'auth', '0010_alter_group_name_max_length', '2022-06-26 06:27:40.369016'),
+(13, 'auth', '0011_update_proxy_permissions', '2022-06-26 06:27:40.413594'),
+(14, 'auth', '0012_alter_user_first_name_max_length', '2022-06-26 06:27:40.454553'),
+(15, 'user', '0001_initial', '2022-06-26 06:27:45.669652'),
+(16, 'admin', '0001_initial', '2022-06-26 06:27:47.244826'),
+(17, 'admin', '0002_logentry_remove_auto_add', '2022-06-26 06:27:47.274153'),
+(18, 'admin', '0003_logentry_add_action_flag_choices', '2022-06-26 06:27:47.324253'),
+(19, 'escuela', '0001_initial', '2022-06-26 06:27:59.013229'),
+(20, 'escuela', '0002_initial', '2022-06-26 06:27:59.950722'),
+(21, 'escuela', '0003_alter_alumno_usuario', '2022-06-26 06:28:01.953427'),
+(22, 'sessions', '0001_initial', '2022-06-26 06:28:02.790250');
 
 -- --------------------------------------------------------
 
@@ -261,10 +231,10 @@ INSERT INTO `django_migrations` (`id`, `app`, `name`, `applied`) VALUES
 --
 
 CREATE TABLE `django_session` (
-  `session_key` varchar(40) NOT NULL,
-  `session_data` longtext NOT NULL,
+  `session_key` varchar(40) COLLATE utf8_spanish_ci NOT NULL,
+  `session_data` longtext COLLATE utf8_spanish_ci NOT NULL,
   `expire_date` datetime(6) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -274,23 +244,16 @@ CREATE TABLE `django_session` (
 
 CREATE TABLE `escuela_alumno` (
   `num_reg` int(11) NOT NULL,
-  `num_doc` varchar(10) NOT NULL,
-  `nombre` varchar(90) NOT NULL,
-  `apellido` varchar(90) NOT NULL,
+  `num_doc` varchar(10) COLLATE utf8_spanish_ci NOT NULL,
+  `nombre` varchar(90) COLLATE utf8_spanish_ci NOT NULL,
+  `apellido` varchar(90) COLLATE utf8_spanish_ci NOT NULL,
   `fecha_nac` date NOT NULL,
   `edad` int(11) DEFAULT NULL,
-  `direccion` varchar(120) NOT NULL,
-  `telefono` varchar(14) NOT NULL,
+  `direccion` varchar(120) COLLATE utf8_spanish_ci NOT NULL,
+  `telefono` varchar(14) COLLATE utf8_spanish_ci NOT NULL,
   `aula_id` int(11) NOT NULL,
   `usuario_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `escuela_alumno`
---
-
-INSERT INTO `escuela_alumno` (`num_reg`, `num_doc`, `nombre`, `apellido`, `fecha_nac`, `edad`, `direccion`, `telefono`, `aula_id`, `usuario_id`) VALUES
-(21198, '33.333.333', 'leo', 'de los Rios', '2002-04-24', NULL, 'Uruguay843 Villa América Capital', '(333) 333-3333', 1, 2);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -303,14 +266,7 @@ CREATE TABLE `escuela_aula` (
   `año` int(11) NOT NULL,
   `division` int(11) NOT NULL,
   `preceptor_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `escuela_aula`
---
-
-INSERT INTO `escuela_aula` (`idAula`, `año`, `division`, `preceptor_id`) VALUES
-(1, 1, 1, 1);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -323,7 +279,7 @@ CREATE TABLE `escuela_curso` (
   `dia_clase` int(11) NOT NULL,
   `aula_idAula_id` int(11) NOT NULL,
   `materia_codigo_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -333,10 +289,10 @@ CREATE TABLE `escuela_curso` (
 
 CREATE TABLE `escuela_dicta` (
   `id` int(11) NOT NULL,
-  `cargo` varchar(85) NOT NULL,
+  `cargo` varchar(85) COLLATE utf8_spanish_ci NOT NULL,
   `materia_codigo_id` int(11) NOT NULL,
   `profesor_id_profesor_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -346,9 +302,9 @@ CREATE TABLE `escuela_dicta` (
 
 CREATE TABLE `escuela_materia` (
   `codigo` int(11) NOT NULL,
-  `nombre` varchar(90) NOT NULL,
+  `nombre` varchar(90) COLLATE utf8_spanish_ci NOT NULL,
   `cant_horas` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -358,22 +314,15 @@ CREATE TABLE `escuela_materia` (
 
 CREATE TABLE `escuela_preceptor` (
   `idPreceptor` int(11) NOT NULL,
-  `num_cuil` varchar(15) NOT NULL,
-  `num_doc` varchar(10) NOT NULL,
-  `nombre` varchar(90) NOT NULL,
-  `apellido` varchar(90) NOT NULL,
+  `num_cuil` varchar(15) COLLATE utf8_spanish_ci NOT NULL,
+  `num_doc` varchar(10) COLLATE utf8_spanish_ci NOT NULL,
+  `nombre` varchar(90) COLLATE utf8_spanish_ci NOT NULL,
+  `apellido` varchar(90) COLLATE utf8_spanish_ci NOT NULL,
   `fecha_nac` date NOT NULL,
   `edad` int(11) DEFAULT NULL,
-  `direccion` varchar(120) NOT NULL,
-  `telefono` varchar(14) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `escuela_preceptor`
---
-
-INSERT INTO `escuela_preceptor` (`idPreceptor`, `num_cuil`, `num_doc`, `nombre`, `apellido`, `fecha_nac`, `edad`, `direccion`, `telefono`) VALUES
-(1, '22-22.222.222-2', '22.222.222', 'Cristiano', 'Ronaldo', '2008-12-29', NULL, 'Manchester 288 W', '(222) 222-2222');
+  `direccion` varchar(120) COLLATE utf8_spanish_ci NOT NULL,
+  `telefono` varchar(14) COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -383,15 +332,15 @@ INSERT INTO `escuela_preceptor` (`idPreceptor`, `num_cuil`, `num_doc`, `nombre`,
 
 CREATE TABLE `escuela_profesor` (
   `idProfesor` int(11) NOT NULL,
-  `num_cuil` varchar(15) NOT NULL,
-  `num_doc` varchar(10) NOT NULL,
-  `nombre` varchar(90) NOT NULL,
-  `apellido` varchar(90) NOT NULL,
+  `num_cuil` varchar(15) COLLATE utf8_spanish_ci NOT NULL,
+  `num_doc` varchar(10) COLLATE utf8_spanish_ci NOT NULL,
+  `nombre` varchar(90) COLLATE utf8_spanish_ci NOT NULL,
+  `apellido` varchar(90) COLLATE utf8_spanish_ci NOT NULL,
   `fecha_nac` date NOT NULL,
   `edad` int(11) DEFAULT NULL,
-  `direccion` varchar(120) NOT NULL,
-  `telefono` varchar(14) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `direccion` varchar(120) COLLATE utf8_spanish_ci NOT NULL,
+  `telefono` varchar(14) COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -406,7 +355,7 @@ CREATE TABLE `escuela_rinde` (
   `nota_3` int(11) NOT NULL,
   `alumno_nro_registro_id` int(11) NOT NULL,
   `materia_codigo_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -416,11 +365,11 @@ CREATE TABLE `escuela_rinde` (
 
 CREATE TABLE `escuela_tiene` (
   `id` int(11) NOT NULL,
-  `hora_ingreso` varchar(45) NOT NULL,
-  `hora_egreso` varchar(45) NOT NULL,
+  `hora_ingreso` varchar(45) COLLATE utf8_spanish_ci NOT NULL,
+  `hora_egreso` varchar(45) COLLATE utf8_spanish_ci NOT NULL,
   `aula_idAula_id` int(11) NOT NULL,
   `turno_idturno_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -430,8 +379,8 @@ CREATE TABLE `escuela_tiene` (
 
 CREATE TABLE `escuela_turno` (
   `idTurno` int(11) NOT NULL,
-  `nombre` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `nombre` varchar(45) COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -440,16 +389,8 @@ CREATE TABLE `escuela_turno` (
 --
 
 CREATE TABLE `user_tipousuario` (
-  `nombre` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `user_tipousuario`
---
-
-INSERT INTO `user_tipousuario` (`nombre`) VALUES
-('Administrador'),
-('Alumno');
+  `nombre` varchar(100) COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -459,26 +400,18 @@ INSERT INTO `user_tipousuario` (`nombre`) VALUES
 
 CREATE TABLE `user_user` (
   `id` int(11) NOT NULL,
-  `password` varchar(128) NOT NULL,
+  `password` varchar(128) COLLATE utf8_spanish_ci NOT NULL,
   `last_login` datetime(6) DEFAULT NULL,
   `is_superuser` tinyint(1) NOT NULL,
-  `username` varchar(150) NOT NULL,
-  `first_name` varchar(150) NOT NULL,
-  `last_name` varchar(150) NOT NULL,
-  `email` varchar(254) NOT NULL,
+  `username` varchar(150) COLLATE utf8_spanish_ci NOT NULL,
+  `first_name` varchar(150) COLLATE utf8_spanish_ci NOT NULL,
+  `last_name` varchar(150) COLLATE utf8_spanish_ci NOT NULL,
+  `email` varchar(254) COLLATE utf8_spanish_ci NOT NULL,
   `is_staff` tinyint(1) NOT NULL,
   `is_active` tinyint(1) NOT NULL,
   `date_joined` datetime(6) NOT NULL,
-  `tipo_id` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `user_user`
---
-
-INSERT INTO `user_user` (`id`, `password`, `last_login`, `is_superuser`, `username`, `first_name`, `last_name`, `email`, `is_staff`, `is_active`, `date_joined`, `tipo_id`) VALUES
-(1, 'pbkdf2_sha256$320000$2ikfjlLklFX85e9xbhucDX$dk/8BWMpp2/1s7arAVJPIqs+s4kVKCX/V3OvPTD+a/Y=', '2022-06-26 05:20:25.524974', 1, 'admin', '', '', 'admin@gmail.com', 1, 1, '2022-06-26 04:54:41.000000', 'Administrador'),
-(2, 'pbkdf2_sha256$320000$QQHRvjfqUH1aNhTzYCGQUD$9nFZw/iasYuxplkySqxwa8Yna6MyS9prFF4pa3QkrG0=', '2022-06-26 05:22:16.021349', 0, 'leo', '', '', '', 0, 1, '2022-06-26 05:17:21.861729', 'Alumno');
+  `tipo_id` varchar(100) COLLATE utf8_spanish_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -490,7 +423,7 @@ CREATE TABLE `user_user_groups` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `group_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -502,18 +435,11 @@ CREATE TABLE `user_user_user_permissions` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `permission_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Índices para tablas volcadas
 --
-
---
--- Indices de la tabla `alumnos`
---
-ALTER TABLE `alumnos`
-  ADD PRIMARY KEY (`DNI`),
-  ADD UNIQUE KEY `DNI` (`DNI`);
 
 --
 -- Indices de la tabla `auth_group`
@@ -697,7 +623,7 @@ ALTER TABLE `auth_permission`
 -- AUTO_INCREMENT de la tabla `django_admin_log`
 --
 ALTER TABLE `django_admin_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `django_content_type`
@@ -715,7 +641,7 @@ ALTER TABLE `django_migrations`
 -- AUTO_INCREMENT de la tabla `escuela_aula`
 --
 ALTER TABLE `escuela_aula`
-  MODIFY `idAula` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idAula` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `escuela_curso`
@@ -733,7 +659,7 @@ ALTER TABLE `escuela_dicta`
 -- AUTO_INCREMENT de la tabla `escuela_preceptor`
 --
 ALTER TABLE `escuela_preceptor`
-  MODIFY `idPreceptor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idPreceptor` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `escuela_profesor`
@@ -763,7 +689,7 @@ ALTER TABLE `escuela_turno`
 -- AUTO_INCREMENT de la tabla `user_user`
 --
 ALTER TABLE `user_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `user_user_groups`
