@@ -4,6 +4,19 @@
 {% block body %}
     <form class="form" method="post" enctype="multipart/form-data" novalidate=''>
         {% csrf_token %}
+        {% if form.errors %}
+            <!-- Mensaje de error -->
+            <div class="alert alert-danger d-flex align-items-center" role="alert">
+                <p>Hay errores en los datos ingresados. Por favor, corriga lo siguiente:</p>
+                {{ form.non_field_errors }}
+                <ul>
+                    {% for field in form %} <!-- field: campo del formulario-->
+                        {% if field.errors %}<li>{{ field.label }}: {{ field.errors|striptags }}</li>{% endif %}
+                    {% endfor %}
+                </ul>
+                <br>
+            </div>
+        {% endif %}
         {{ form.codigo.label }} {{ form.codigo }}
         {{ form.nombre.label }} {{ form.nombre }}
         {{ form.cant_horas.label }} {{ form.cant_horas }}

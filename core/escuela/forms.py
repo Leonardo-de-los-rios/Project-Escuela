@@ -67,13 +67,15 @@ class AlumnoForm(ModelForm):
     class Meta:
         model = Alumno
         fields = '__all__'
-        widgets = { 'num_reg': forms.TextInput(attrs={'class':'form-control input', 'text-transform':'capitalize', 'name':'registro', 'id':'registro'}),
+        widgets = { 'num_reg': forms.TextInput(attrs={'class':'form-control input', 'text-transform':'capitalize'}),
                     'nombre': forms.TextInput(attrs={'class':'form-control input', 'text-transform':'capitalize'}),
                     'apellido': forms.TextInput(attrs={'class':'form-control input', 'text-transform':'capitalize'}),
                     'num_doc': forms.TextInput(attrs={'class':'form-control input', 'text-transform':'capitalize', 'id':'dni', 'placeholder':'12.345.678'}),
                     'fecha_nac': DateInput(format='%Y-%m-%d', attrs={'class':'form-control input-sm','min':"2002-01-01", 'max':"2009-01-01"}),
                     'telefono': forms.TextInput(attrs={'class':'form-control input', 'text-transform':'capitalize', 'id':'phone', 'placeholder':'(264) 512-3456'}),
+                    'direccion': forms.TextInput(attrs={'class':'form-control input', 'text-transform':'capitalize', 'placeholder':'Las Heras 430 Este'}),
                     'aula': forms.Select(attrs={'class':'form-control input', 'text-transform':'capitalize', 'id':"exampleFormControlSelect2"}),
+                    'usuario': forms.Select(attrs={'class':'form-control input', 'text-transform':'capitalize'}),
                     }
         help_texts = {k:"" for k in fields }
 
@@ -93,7 +95,7 @@ class CursoForm(ModelForm):
         fields = '__all__'
         widgets = { 'materia_codigo': forms.Select(attrs={'class':'form-control input'}),
                     'aula_idAula': forms.Select(attrs={'class':'form-control input'}),
-                    'dia_clase': forms.SelectMultiple(attrs={'class':'form-control input', 'text-transform':'capitalize'}),
+                    'dia_clase': forms.Select(attrs={'class':'form-control input', 'text-transform':'capitalize'}),
                     }
         help_texts = {k:"" for k in fields }
 

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block titulo_pagina %}Listado de Tienen{% endblock %}
+{% block body %}
+    <table class="table table-hover">
+        <thead class="table-light">
+            <tr>
+                <th>Aula ID</th>
+                <th>Turno ID</th>
+                <th>Hora de Entrada</th>
+                <th>Hora de Salida</th>
+                <th>MODIFICAR</th>
+                <th>ELIMINAR</th>
+            </tr>
+        </thead>
+    {% for tiene in tienen %}
+        <tr>
+            <td>{{tiene.aula_idAula}}</td>
+            <td>{{tiene.turno_idTurno}}</td>
+            <td>{{tiene.hora_ingreso}}</td>
+            <td>{{tiene.hora_egreso}}</td>
+            <td><a href="{% url 'modificar_tiene' tiene.id %}"><img src="{% static 'img/Editar_25.png' %}"></a></td>
+            <td><a href="{% url 'eliminar_tiene' tiene.id %}"><img src="{% static 'img/Eliminar_25.png' %}"></a></td>
+        </tr>
+    {% endfor %}
+    </table>
+{% endblock %}

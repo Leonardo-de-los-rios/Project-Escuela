@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block titulo_pagina %}Listado de Profesores{% endblock %}
+{% block body %}
+    <table class="table table-hover">
+        <thead class="table-light">
+            <tr>
+                <th>Apellido</th>
+                <th>Nombre</th>
+                <th>DNI</th>
+                <th>CUIT/CUIL</th>
+                <th>Edad</th>
+                <th>Dirección</th>
+                <th>Teléfono</th>
+                <th>MODIFICAR</th>
+                <th>ELIMINAR</th>
+            </tr>
+        </thead>
+    {% for profesor in profesores %}
+        <tr>
+            <td>{{profesor.apellido}}</td>
+            <td>{{profesor.nombre}}</td>
+            <td>{{profesor.num_doc}}</td>
+            <td>{{profesor.num_cuil}}</td>
+            <td>{{profesor.edad}}</td>
+            <td>{{profesor.direccion}}</td>
+            <td>{{profesor.telefono}}</td>
+            <td><a href="{% url 'modificar_profesor' profesor.idProfesor %}"><img src="{% static 'img/Editar_25.png' %}"></a></td>
+            <td><a href="{% url 'eliminar_profesor' profesor.idProfesor %}"><img src="{% static 'img/Eliminar_25.png' %}"></a></td>
+        </tr>
+    {% endfor %}
+    </table>
+{% endblock %}

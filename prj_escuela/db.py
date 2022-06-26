@@ -8,3 +8,12 @@ SQLITE = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+MYSQL = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'escuela_db',
+        'USER': 'adm_odontologia',
+        'PASSWORD': 'Qwerty123#'
+    }
+}

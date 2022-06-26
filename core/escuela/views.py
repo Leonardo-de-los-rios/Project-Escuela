@@ -214,21 +214,28 @@ def listar_usuarios(request, template_name='escuela/usuarios.html'):
     dato = {'usuarios': usuarios}
     return render(request,template_name,dato)
 
-'''def listar_generos(request, template_name='escuela/generos.html'):
-    generos = Genero.objects.all()
-    dato = {'generos': generos}
+def listar_preceptores(request, template_name='escuela/preceptores.html'):
+    preceptores = Preceptor.objects.all()
+    for preceptor in preceptores:
+        preceptor.edad = relativedelta(datetime.now(), preceptor.fecha_nac).years
+    dato = {'preceptores': preceptores}
     return render(request,template_name,dato)
 
-def listar_personas(request, template_name='escuela/personas.html'):
-    personas = Persona.objects.all()
-    for persona in personas:
-        persona.edad = relativedelta(datetime.now(), persona.fecha_nac).years
-    dato = {'personas': personas}
-    return render(request,template_name,dato)'''
+def listar_aulas(request, template_name='escuela/aulas.html'):
+    aulas = Aula.objects.all()
+    dato = {'aulas': aulas}
+    return render(request,template_name,dato)
 
-def listar_turnos(request, template_name='escuela/turnos.html'):
-    turnos = Turno.objects.all()
-    dato = {'turnos': turnos}
+def listar_alumnos(request, template_name='escuela/alumnos.html'):
+    alumnos = Alumno.objects.all()
+    for alumno in alumnos:
+        alumno.edad = relativedelta(datetime.now(), alumno.fecha_nac).years
+    dato = {'alumnos': alumnos}
+    return render(request,template_name,dato)
+
+def listar_materias(request, template_name='escuela/materias.html'):
+    materias = Materia.objects.all()
+    dato = {'materias': materias}
     return render(request,template_name,dato)
 
 def listar_cursos(request, template_name='escuela/cursos.html'):
@@ -236,11 +243,31 @@ def listar_cursos(request, template_name='escuela/cursos.html'):
     dato = {'cursos': cursos}
     return render(request,template_name,dato)
 
-def listar_alumnos(request, template_name='escuela/alumnos.html'):
-    alumnos = Alumno.objects.all()
-    for alumno in alumnos:
-        alumno.persona.edad = relativedelta(datetime.now(), alumno.persona.fecha_nac).years
-    dato = {'alumnos': alumnos}
+def listar_turnos(request, template_name='escuela/turnos.html'):
+    turnos = Turno.objects.all()
+    dato = {'turnos': turnos}
+    return render(request,template_name,dato)
+
+def listar_tienen(request, template_name='escuela/tienen.html'):
+    tienen = Tiene.objects.all()
+    dato = {'tienen': tienen}
+    return render(request,template_name,dato)
+
+def listar_rinden(request, template_name='escuela/rinden.html'):
+    rinden = Rinde.objects.all()
+    dato = {'rinden': rinden}
+    return render(request,template_name,dato)
+
+def listar_profesores(request, template_name='escuela/profesores.html'):
+    profesores = profesor.objects.all()
+    for profesor in profesores:
+        profesor.edad = relativedelta(datetime.now(), profesor.fecha_nac).years
+    dato = {'profesors': profesores}
+    return render(request,template_name,dato)
+
+def listar_dictan(request, template_name='escuela/dictan.html'):
+    dictan = Dicta.objects.all()
+    dato = {'dictan': dictan}
     return render(request,template_name,dato)
 
 '''def modificar_tipo_usuario(request,pk,template_name='escuela/tipo_usuario_form.html'):
@@ -287,12 +314,45 @@ def modificar_persona(request,pk,template_name='escuela/persona_form.html'):
     dato = {'form':form}
     return render(request,template_name,dato)'''
 
-def modificar_turno(request,pk,template_name='escuela/turno_form.html'):
-    turno = Turno.objects.get(nombre=pk)
-    form = TurnoForm(request.POST or None, instance=turno)
+def modificar_preceptor(request,pk,template_name='escuela/preceptor_form.html'):
+    preceptor = Preceptor.objects.get(num_reg=pk)
+    form = PreceptorForm(request.POST or None, instance=preceptor)
     if form.is_valid():
         form.save(commit=True)
-        return redirect('turnos')
+        return redirect('preceptores')
+    else:
+        print(form.errors)
+    dato = {'form':form}
+    return render(request,template_name,dato)
+
+def modificar_aula(request,pk,template_name='escuela/aula_form.html'):
+    aula = Aula.objects.get(id=pk)
+    form = AulaForm(request.POST or None, instance=aula)
+    if form.is_valid():
+        form.save(commit=True)
+        return redirect('aulas')
+    else:
+        print(form.errors)
+    dato = {'form':form}
+    return render(request,template_name,dato)
+
+def modificar_alumno(request,pk,template_name='escuela/alumno_form.html'):
+    alumno = Alumno.objects.get(num_reg=pk)
+    form = AlumnoForm(request.POST or None, instance=alumno)
+    if form.is_valid():
+        form.save(commit=True)
+        return redirect('alumnos')
+    else:
+        print(form.errors)
+    dato = {'form':form}
+    return render(request,template_name,dato)
+
+def modificar_materia(request,pk,template_name='escuela/materia_form.html'):
+    materia = Materia.objects.get(nombre=pk)
+    form = MateriaForm(request.POST or None, instance=materia)
+    if form.is_valid():
+        form.save(commit=True)
+        return redirect('materias')
     else:
         print(form.errors)
     dato = {'form':form}
@@ -309,12 +369,56 @@ def modificar_curso(request,pk,template_name='escuela/curso_form.html'):
     dato = {'form':form}
     return render(request,template_name,dato)
 
-def modificar_alumno(request,pk,template_name='escuela/alumno_form.html'):
-    alumno = Alumno.objects.get(num_reg=pk)
-    form = AlumnoForm(request.POST or None, instance=alumno)
+def modificar_turno(request,pk,template_name='escuela/turno_form.html'):
+    turno = Turno.objects.get(nombre=pk)
+    form = TurnoForm(request.POST or None, instance=turno)
     if form.is_valid():
         form.save(commit=True)
-        return redirect('alumnos')
+        return redirect('turnos')
+    else:
+        print(form.errors)
+    dato = {'form':form}
+    return render(request,template_name,dato)
+
+def modificar_tiene(request,pk,template_name='escuela/tiene_form.html'):
+    tiene = Tiene.objects.get(nombre=pk)
+    form = TieneForm(request.POST or None, instance=tiene)
+    if form.is_valid():
+        form.save(commit=True)
+        return redirect('tienen')
+    else:
+        print(form.errors)
+    dato = {'form':form}
+    return render(request,template_name,dato)
+
+def modificar_rinde(request,pk,template_name='escuela/rinde_form.html'):
+    rinde = Rinde.objects.get(nombre=pk)
+    form = RindeForm(request.POST or None, instance=rinde)
+    if form.is_valid():
+        form.save(commit=True)
+        return redirect('rinden')
+    else:
+        print(form.errors)
+    dato = {'form':form}
+    return render(request,template_name,dato)
+
+def modificar_profesor(request,pk,template_name='escuela/profesor_form.html'):
+    profesor = Profesor.objects.get(num_reg=pk)
+    form = ProfesorForm(request.POST or None, instance=profesor)
+    if form.is_valid():
+        form.save(commit=True)
+        return redirect('profesores')
+    else:
+        print(form.errors)
+    dato = {'form':form}
+    return render(request,template_name,dato)
+
+def modificar_dicta(request,pk,template_name='escuela/dicta_form.html'):
+    dicta = Dicta.objects.get(nombre=pk)
+    form = DictaForm(request.POST or None, instance=dicta)
+    if form.is_valid():
+        form.save(commit=True)
+        return redirect('dictan')
     else:
         print(form.errors)
     dato = {'form':form}
@@ -356,13 +460,40 @@ def eliminar_persona(request,pk,template_name='escuela/persona_confirmar_elimina
         dato={'form':persona}
         return render(request,template_name,dato)'''
 
-def eliminar_turno(request,pk,template_name='escuela/turno_confirmar_eliminacion.html'):
-    turno=Turno.objects.get(nombre=pk)
+def eliminar_preceptor(request,pk,template_name='escuela/preceptor_confirmar_eliminacion.html'):
+    preceptor=Preceptor.objects.get(nombre=pk)
     if request.method=='POST':
-        turno.delete()
-        return redirect('turnos')
+        preceptor.delete()
+        return redirect('preceptores')
     else:
-        dato={'form':turno}
+        dato={'form':preceptor}
+        return render(request,template_name,dato)
+
+def eliminar_aula(request,pk,template_name='escuela/aula_confirmar_eliminacion.html'):
+    aula=Aula.objects.get(nombre=pk)
+    if request.method=='POST':
+        aula.delete()
+        return redirect('aulas')
+    else:
+        dato={'form':aula}
+        return render(request,template_name,dato)
+
+def eliminar_alumno(request,pk,template_name='escuela/alumno_confirmar_eliminacion.html'):
+    alumno=Alumno.objects.get(num_reg=pk)
+    if request.method=='POST':
+        alumno.delete()
+        return redirect('alumnos')
+    else:
+        dato={'form':alumno}
+        return render(request,template_name,dato)
+
+def eliminar_materia(request,pk,template_name='escuela/materia_confirmar_eliminacion.html'):
+    materia=Materia.objects.get(num_reg=pk)
+    if request.method=='POST':
+        materia.delete()
+        return redirect('materias')
+    else:
+        dato={'form':materia}
         return render(request,template_name,dato)
 
 def eliminar_curso(request,pk,template_name='escuela/curso_confirmar_eliminacion.html'):
@@ -374,11 +505,47 @@ def eliminar_curso(request,pk,template_name='escuela/curso_confirmar_eliminacion
         dato={'form':curso}
         return render(request,template_name,dato)
 
-def eliminar_alumno(request,pk,template_name='escuela/alumno_confirmar_eliminacion.html'):
-    alumno=Alumno.objects.get(num_reg=pk)
+def eliminar_turno(request,pk,template_name='escuela/turno_confirmar_eliminacion.html'):
+    turno=Turno.objects.get(nombre=pk)
     if request.method=='POST':
-        alumno.delete()
-        return redirect('alumnos')
+        turno.delete()
+        return redirect('turnos')
     else:
-        dato={'form':alumno}
+        dato={'form':turno}
+        return render(request,template_name,dato)
+
+def eliminar_tiene(request,pk,template_name='escuela/tiene_confirmar_eliminacion.html'):
+    tiene=Tiene.objects.get(nombre=pk)
+    if request.method=='POST':
+        tiene.delete()
+        return redirect('tienen')
+    else:
+        dato={'form':tiene}
+        return render(request,template_name,dato)
+
+def eliminar_rinde(request,pk,template_name='escuela/rinde_confirmar_eliminacion.html'):
+    rinde=Rinde.objects.get(nombre=pk)
+    if request.method=='POST':
+        rinde.delete()
+        return redirect('rinden')
+    else:
+        dato={'form':rinde}
+        return render(request,template_name,dato)
+
+def eliminar_profesor(request,pk,template_name='escuela/profesor_confirmar_eliminacion.html'):
+    profesor=Profesor.objects.get(num_reg=pk)
+    if request.method=='POST':
+        profesor.delete()
+        return redirect('profesors')
+    else:
+        dato={'form':profesor}
+        return render(request,template_name,dato)
+
+def eliminar_dicta(request,pk,template_name='escuela/dicta_confirmar_eliminacion.html'):
+    dicta=Dicta.objects.get(nombre=pk)
+    if request.method=='POST':
+        dicta.delete()
+        return redirect('dictan')
+    else:
+        dato={'form':dicta}
         return render(request,template_name,dato)

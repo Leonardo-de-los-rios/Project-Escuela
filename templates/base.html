@@ -44,6 +44,7 @@
         <nav class="second-nav">
           <a class="feed" href="{% url 'index' %}">Inicio</a>
           {% if request.user.is_authenticated %}
+            {% if request.user.get_tipo == 'Administrador' %}
               <a class="feed" href="{% url 'nuevo_preceptor' %}">Nuevo Preceptor</a>
               <a class="feed" href="{% url 'nueva_aula' %}">Nueva Aula</a>
               <a class="feed" href="{% url 'nuevo_alumno' %}">Nuevo Alumno</a>
@@ -58,6 +59,13 @@
               <a class="feed" href="{% url 'turnos' %}">Turnos</a>
               <a class="feed" href="{% url 'cursos' %}">Cursos</a>
               <a class="feed" href="{% url 'alumnos' %}">Alumnos</a>
+            {% elif request.user.get_tipo == 'Alumno' %}
+
+            {% elif request.user.get_tipo == 'Profesor' %}
+
+            {% elif request.user.get_tipo == 'Preceptor' %}
+            
+            {% endif %}
           {% endif %}
         </nav>       
 

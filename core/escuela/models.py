@@ -2,7 +2,7 @@ from django.db import models
 from core.user.models import User
 
 class Preceptor(models.Model):
-    idPreceptor = models.IntegerField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
+    idPreceptor = models.AutoField('Preceptor', auto_created=True, primary_key=True, serialize=False)
     num_cuil = models.CharField('N° de CUIT/CUIL', max_length=15, unique=True)
     num_doc = models.CharField('N° de documento', max_length=10, unique=True)
     nombre = models.CharField('Nombre/s', max_length=90)
@@ -38,7 +38,7 @@ class Aula(models.Model):
     (6, 'Sexta'),
     )
 
-    idAula = models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
+    idAula = models.AutoField('Aula',auto_created=True, primary_key=True, serialize=False)
     año = models.IntegerField('Año', choices=AÑO_CHOICE) # se almacena como entero pero se muestra como select en el forms
     division = models.IntegerField('División', choices=DIVISION_CHOICE)
     preceptor = models.ForeignKey(Preceptor, on_delete=models.CASCADE, related_name='aula_preceptor')
@@ -50,7 +50,7 @@ class Aula(models.Model):
         return f'{self.año}°  -  {self.division}°'
 
 class Alumno(models.Model):
-    num_reg = models.CharField('N° de Registro', max_length=6, primary_key=True)
+    num_reg = models.IntegerField('N° de Registro', primary_key=True)
     num_doc = models.CharField('N° de documento', max_length=10, unique=True)
     nombre = models.CharField('Nombre/s', max_length=90)
     apellido = models.CharField('Apellido/s',max_length=90)
@@ -59,6 +59,7 @@ class Alumno(models.Model):
     direccion = models.CharField('Calle y número', max_length=120)
     telefono = models.CharField('N° de teléfono', max_length=14)
     aula = models.ForeignKey(Aula, on_delete=models.CASCADE, related_name='alumno_curso')
+    usuario = models.OneToOneField(User, on_delete=models.CASCADE, related_name='alumno_user')
 
     class Meta:
         ordering = ['apellido', 'nombre']
@@ -85,11 +86,10 @@ class Curso(models.Model):
     (4, 'Jueves'),
     (5, 'Viernes'),
     (6, 'Sábado'),
-    (7, 'Domingo')
     )
 
-    materia_codigo = models.ForeignKey(Materia,on_delete=models.CASCADE,related_name='curso_materia')
-    aula_idAula = models.ForeignKey(Aula,on_delete=models.CASCADE,related_name='curso_aula')
+    materia_codigo = models.ForeignKey(Materia, on_delete=models.CASCADE, related_name='curso_materia')
+    aula_idAula = models.ForeignKey(Aula, on_delete=models.CASCADE, related_name='curso_aula_idAula')
     dia_clase = models.IntegerField('Día de Clase', choices=DIA_CHOICE)
 
     class Meta:
@@ -133,7 +133,7 @@ class Rinde(models.Model):
         ordering = ['materia_codigo', 'alumno_nro_registro']
 
     def __str__(self):
-        return f'{self.aula_idAula} - {self.turno_idTurno}'
+        return f'{self.materia_codigo} - {self.alumno_nro_registro}'
 
 class Profesor(models.Model):
     idProfesor = models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')

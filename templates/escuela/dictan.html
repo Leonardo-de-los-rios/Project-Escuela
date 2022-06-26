@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block titulo_pagina %}Listado de Dictan{% endblock %}
+{% block body %}
+    <table class="table table-hover">
+        <thead class="table-light">
+            <tr>
+                <th>Profesor ID</th>
+                <th>Materia Código</th>
+                <th>Cargo</th>
+                <th>MODIFICAR</th>
+                <th>ELIMINAR</th>
+            </tr>
+        </thead>
+    {% for dicta in dictan %}
+        <tr>
+            <td>{{dicta.profesor_id_profesor}}</td>
+            <td>{{dicta.materia_codigo}}</td>
+            <td>{{dicta.cargo}}</td>
+            <td><a href="{% url 'modificar_dicta' dicta.id %}"><img src="{% static 'img/Editar_25.png' %}"></a></td>
+            <td><a href="{% url 'eliminar_dicta' dicta.id %}"><img src="{% static 'img/Eliminar_25.png' %}"></a></td>
+        </tr>
+    {% endfor %}
+    </table>
+{% endblock %}

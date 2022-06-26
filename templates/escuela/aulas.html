@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block titulo_pagina %}Listado de Aulas{% endblock %}
+{% block body %}
+    <table class="table table-hover">
+        <thead class="table-light">
+            <tr>
+                <th>Año</th>
+                <th>División</th>
+                <th>Preceptor</th>
+                <th>MODIFICAR</th>
+                <th>ELIMINAR</th>
+            </tr>
+        </thead>
+    {% for aula in aulas %}
+        <tr>
+            <td>{{aula.año}}</td>
+            <td>{{aula.division}}</td>
+            <td>{{aula.preceptor}}</td>
+            <td><a href="{% url 'modificar_aula' aula.idAula %}"><img src="{% static 'img/Editar_25.png' %}"></a></td>
+            <td><a href="{% url 'eliminar_aula' aula.idAula %}"><img src="{% static 'img/Eliminar_25.png' %}"></a></td>
+        </tr>
+    {% endfor %}
+    </table>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block titulo_pagina %}Listado de Preceptores{% endblock %}
+{% block body %}
+    <table class="table table-hover">
+        <thead class="table-light">
+            <tr>
+                <th>Apellido</th>
+                <th>Nombre</th>
+                <th>DNI</th>
+                <th>CUIT/CUIL</th>
+                <th>Edad</th>
+                <th>Dirección</th>
+                <th>Teléfono</th>
+                <th>MODIFICAR</th>
+                <th>ELIMINAR</th>
+            </tr>
+        </thead>
+    {% for preceptor in preceptores %}
+        <tr>
+            <td>{{preceptor.apellido}}</td>
+            <td>{{preceptor.nombre}}</td>
+            <td>{{preceptor.num_doc}}</td>
+            <td>{{preceptor.num_cuil}}</td>
+            <td>{{preceptor.edad}}</td>
+            <td>{{preceptor.direccion}}</td>
+            <td>{{preceptor.telefono}}</td>
+            <td><a href="{% url 'modificar_preceptor' preceptor.idPreceptor %}"><img src="{% static 'img/Editar_25.png' %}"></a></td>
+            <td><a href="{% url 'eliminar_preceptor' preceptor.idPreceptor %}"><img src="{% static 'img/Eliminar_25.png' %}"></a></td>
+        </tr>
+    {% endfor %}
+    </table>
+{% endblock %}

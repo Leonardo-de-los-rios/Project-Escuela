@@ -5,24 +5,24 @@
     <table class="table table-hover">
         <thead class="table-light">
             <tr>
+                <th>N° de Registro</th>
                 <th>Apellido</th>
                 <th>Nombre</th>
                 <th>DNI</th>
                 <th>Edad</th>
-                <th>N° de Registro</th>
-                <th>Curso</th>
+                <th>Aula</th>
                 <th>MODIFICAR</th>
                 <th>ELIMINAR</th>
             </tr>
         </thead>
     {% for alumno in alumnos %}
         <tr>
-            <td>{{alumno.persona.apellido}}</td>
-            <td>{{alumno.persona.nombre}}</td>
-            <td>{{alumno.persona.num_doc}}</td>
-            <td>{{alumno.persona.edad}}</td>
             <td>{{alumno.num_reg}}</td>
-            <td>{{alumno.curso}}</td>
+            <td>{{alumno.apellido}}</td>
+            <td>{{alumno.nombre}}</td>
+            <td>{{alumno.num_doc}}</td>
+            <td>{{alumno.edad}}</td>
+            <td>{{alumno.aula}}</td>
             <td><a href="{% url 'modificar_alumno' alumno.num_reg %}"><img src="{% static 'img/Editar_25.png' %}"></a></td>
             <td><a href="{% url 'eliminar_alumno' alumno.num_reg %}"><img src="{% static 'img/Eliminar_25.png' %}"></a></td>
         </tr>
